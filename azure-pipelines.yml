@@ -36,7 +36,7 @@ parameters:
   - name: Version
     displayName: "Enter the tag to deploy (Ex: v1.2.3)"
     type: string
-    default: false
+    default: ""
 
 trigger: none
 stages:
