@@ -15,13 +15,13 @@ parameters:
         - Admin
         - onlinepayment
   - name: EnvironmentType
-    displayName: 'Select the Envionment'
+    displayName: 'Select the Environment'
     type: string
     default: QA
     values:
-        - QA
         - Dev
-        - Security
+        - QA
+        - IntegrationTest
 
   - name: UnitTestRun
     displayName: 'Do you want to Run Unit Test?'
@@ -33,11 +33,6 @@ parameters:
     type: boolean
     default: true
   
-  - name: Version
-    displayName: "Enter the tag to deploy (Ex: v1.2.3)"
-    type: string
-    default: ""
-
 trigger: none
 stages:
 - stage: Build
