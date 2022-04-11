@@ -39,7 +39,7 @@ stages:
   jobs:
   - job: Build
     pool:
-     name: default
+     vmImage: 'ubuntu-latest'
     steps:
       - script: echo Hello, world!
         displayName: 'Run a one-line script for ${{ parameters.ProjectName }}'
@@ -48,7 +48,7 @@ stages:
     jobs:
     - job: rununitest
       pool:
-       name: default
+     vmImage: 'ubuntu-latest'
       steps:
        - task: Bash@3
          inputs:
@@ -61,7 +61,7 @@ stages:
     jobs:
     - job: deployapp
       pool:
-       name: default
+        vmImage: 'ubuntu-latest'
       steps:
        - task: Bash@3
          inputs:
