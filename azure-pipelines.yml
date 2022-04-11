@@ -1,0 +1,74 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+name: yamldemo_$(Date:yyyyMMdd)$(Rev:.r)
+parameters:
+  - name: ProjectName
+    displayName: "Select Project Name to Build"
+    type: string
+    default: Payment
+    values:
+        - Payment
+        - Profile
+        - Admin
+        - onlinepayment
+  - name: EnvironmentType
+    displayName: 'Select the Envionment'
+    type: string
+    default: QA
+    values:
+        - QA
+        - Dev
+        - Security
+
+  - name: UnitTestRun
+    displayName: 'Do you want to Run Unit Test?'
+    type: boolean
+    default: true
+
+  - name: DeployCheck
+    displayName: "Do you want to Deploy?"
+    type: boolean
+    default: true
+
+trigger: none
+stages:
+- stage: Build
+  jobs:
+  - job: Build
+    pool:
+     name: default
+    steps:
+      - script: echo Hello, world!
+        displayName: 'Run a one-line script for ${{ parameters.ProjectName }}'
+- ${{ if eq(parameters.UnitTestRun, true) }}:
+  - stage: UnitTestRun
+    jobs:
+    - job: rununitest
+      pool:
+       name: default
+      steps:
+       - task: Bash@3
+         inputs:
+           targetType: 'inline'
+           script: |
+             echo "Unit test Setup"
+        
+- ${{ if eq(parameters.DeployCheck, true) }}:
+  - stage: Deploy
+    jobs:
+    - job: deployapp
+      pool:
+       name: default
+      steps:
+       - task: Bash@3
+         inputs:
+           targetType: 'inline'
+           script: |
+             echo "Deploy Setup.."
+
+pool:
+  vmImage: ubuntu-latest
+
