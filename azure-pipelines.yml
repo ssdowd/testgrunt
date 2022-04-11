@@ -72,7 +72,7 @@ stages:
 pool:
   name: default
   vmImage: ubuntu-latest
-pool:
-  name: 'Hosted-Agent'
-  demands:
-  - Agent.Version -gtVersion 2.163.1
+# pool:
+#   name: 'Hosted-Agent'
+#   demands:
+#   - Agent.Version -gtVersion 2.163.1
