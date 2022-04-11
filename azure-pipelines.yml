@@ -54,7 +54,7 @@ stages:
          inputs:
            targetType: 'inline'
            script: |
-             echo "Unit test Setup"
+             echo "Unit test Setup for ${{ parameters.ProjectName }}"
         
 - ${{ if eq(parameters.DeployCheck, true) }}:
   - stage: Deploy
@@ -67,7 +67,7 @@ stages:
          inputs:
            targetType: 'inline'
            script: |
-             echo "Deploy Setup.."
+             echo "Deploy Setup for ${{ parameters.ProjectName }}"
 
 pool:
   name: default
