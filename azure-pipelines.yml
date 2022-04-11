@@ -32,6 +32,11 @@ parameters:
     displayName: "Do you want to Deploy?"
     type: boolean
     default: true
+  
+  - name: Version
+    displayName: 'Enter the tag to deploy (Ex: v1.2.3)'
+    type: string
+    default:L false
 
 trigger: none
 stages:
